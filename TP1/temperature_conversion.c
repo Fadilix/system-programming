@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 
 double celsius_to_fahrenheit(double celsius) {
@@ -6,9 +7,12 @@ double celsius_to_fahrenheit(double celsius) {
 
 int main() {
   printf("+-------+-------+\n");
-  for (double i = 0; i <= 20; i += 0.5) {
-    printf("|  %.1fC | %.1fF |\n", i, celsius_to_fahrenheit(i));
+  for (double celsius = 0; celsius <= 20; celsius += 0.5) {
+    int fahrenheit = (int)rint((celsius_to_fahrenheit(celsius)));
+
+    printf("|  %.1fC | %dF |\n", celsius, fahrenheit);
   }
+
   printf("+-------+-------+");
   return 0;
 }
