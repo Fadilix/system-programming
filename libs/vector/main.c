@@ -4,6 +4,10 @@
 #define MAX 100
 
 int main() {
+  // this is also correct
+  // Vector v;
+  // vector_init(&v);
+
   Vector *v = malloc(sizeof(Vector));
 
   vector_init(v);
