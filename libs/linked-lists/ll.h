@@ -4,6 +4,9 @@
 #ifndef LL_H
 #define LL_H
 
+/*
+ * base recursive structure for a node
+ */
 typedef struct Node {
   int value;
   struct Node *next;

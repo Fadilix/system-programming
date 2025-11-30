@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+ * Create a ll with a defined number of elements
+ * and as many elements as we want using the #include<strdarg.h>
+ * library
+ */
 Node *list_create(int count, ...) {
   va_list ap;
   va_start(ap, count);
@@ -28,6 +33,9 @@ Node *list_create(int count, ...) {
   return ptr;
 }
 
+/*
+ * Display the ll in a arrow pointer type format
+ */
 void print_ll(Node *head) {
   while (head != NULL) {
     printf("%d", head->value);
@@ -38,6 +46,13 @@ void print_ll(Node *head) {
   printf("\n");
 }
 
+/*
+ * Here i noticed that we are using ** because when
+ * using * it takes it as a copy of the original pointer
+ * so the modification of the list only happens in the local pointer
+ * By using ** we are pointing to the pointer of the original Node
+ * It is a little bit confusing now but i'll get the hang of it
+ */
 void list_push_front(Node **head, int value) {
   Node *new_node = malloc(sizeof(Node));
   new_node->value = value;
