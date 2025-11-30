@@ -3,17 +3,17 @@
 #include <stdlib.h>
 
 int main() {
-  Node **current = malloc(sizeof(Node));
-  *current = list_create(4, 2, 3, 4, 7);
+  Node *current = list_create(4, 2, 3, 4, 7);
 
-  // printf("Hello world!!!");
+  print_ll(current);
 
-  print_ll(*current);
+  list_push_front(&current, 6);
 
-  list_push_front(current, 5);
+  print_ll(current);
 
-  print_ll(*current);
+  list_push_back(current, 9);
 
-  free(current);
-  return 0;
+  print_ll(current);
+
+  return 1;
 }

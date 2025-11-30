@@ -44,3 +44,19 @@ void list_push_front(Node **head, int value) {
   new_node->next = *head;
   *head = new_node;
 }
+
+void list_push_back(Node *head, int value) {
+  if (head == NULL)
+    return; // cannot create first node
+
+  Node *new_node = malloc(sizeof(Node));
+  new_node->value = value;
+  new_node->next = NULL;
+
+  Node *current = head;
+  while (current->next != NULL) {
+    current = current->next;
+  }
+
+  current->next = new_node;
+}
