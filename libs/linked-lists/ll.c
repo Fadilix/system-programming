@@ -122,7 +122,7 @@ void list_delete(Node **head, int value) {
   Node *current = *head;
   while (current != NULL && current->next != NULL) {
     if (current->next->value == value) {
-      Node *tmp = current;
+      Node *tmp = current->next;
       current->next = tmp->next;
       free(tmp);
     } else {
