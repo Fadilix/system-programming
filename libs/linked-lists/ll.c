@@ -47,11 +47,17 @@ void print_ll(Node *head) {
 }
 
 /*
- * Here i noticed that we are using ** because when
- * using * it takes it as a copy of the original pointer
- * so the modification of the list only happens in the local pointer
- * By using ** we are pointing to the pointer of the original Node
- * It is a little bit confusing now but i'll get the hang of it
+ * We use a `Node **head` because in C, function arguments are passed by value.
+ * If we use only `Node *head`, then `head` inside the function is just a copy
+ * of the original pointer, so changing it does NOT change the actual list head.
+ *
+ * By using `Node **head`, we pass the address of the pointer. This allows the
+ * function to modify the original head pointer itself (for example when
+ * deleting or inserting at the front of the list).
+ *
+ * It's a second level of indirection and it looks confusing at first, but it
+ * becomes natural once you understand that we need a pointer-to-pointer
+ * whenever we want to change the caller’s pointer.
  */
 void list_push_front(Node **head, int value) {
   Node *new_node = malloc(sizeof(Node));
