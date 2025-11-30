@@ -69,7 +69,7 @@ void list_push_front(Node **head, int value) {
 /*
  * Add element to the end of the linked list
  */
-void list_push_back(Node *head, int value) {
+void list_push_back(Node **head, int value) {
   if (head == NULL)
     return;
 
@@ -77,7 +77,12 @@ void list_push_back(Node *head, int value) {
   new_node->value = value;
   new_node->next = NULL;
 
-  Node *current = head;
+  if (*head == NULL) {
+    *head = new_node;
+    return;
+  }
+
+  Node *current = *head;
   while (current->next != NULL) {
     current = current->next;
   }
@@ -135,4 +140,14 @@ void list_delete(Node **head, int value) {
       current = current->next;
     }
   }
+}
+
+void list_free(Node **head) {
+  Node *current = *head;
+  while (current) {
+    Node *tmp = current;
+    current = current->next;
+    free(tmp);
+  }
+  *head = NULL;
 }

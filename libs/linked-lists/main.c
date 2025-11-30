@@ -9,7 +9,7 @@ int main() {
   list_push_front(&current, 6);
   print_ll(current);
 
-  list_push_back(current, 9);
+  list_push_back(&current, 9);
   print_ll(current);
 
   list_pop_front(&current);
@@ -25,5 +25,11 @@ int main() {
 
   print_ll(current);
 
-  return 1;
+  list_free(&current);
+
+  list_push_back(&current, 20);
+  list_push_back(&current, 20);
+
+  print_ll(current);
+  return 0;
 }
