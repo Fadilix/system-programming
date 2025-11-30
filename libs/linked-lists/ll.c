@@ -37,3 +37,10 @@ void print_ll(Node *head) {
   }
   printf("\n");
 }
+
+void list_push_front(Node **head, int value) {
+  Node *new_node = malloc(sizeof(Node));
+  new_node->value = value;
+  new_node->next = *head;
+  *head = new_node;
+}

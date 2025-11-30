@@ -10,5 +10,6 @@ typedef struct Node {
 
 Node *list_create(int count, ...);
 void print_ll(Node *head);
+void list_push_front(Node **head, int value);
 
 #endif
