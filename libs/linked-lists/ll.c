@@ -45,6 +45,9 @@ void list_push_front(Node **head, int value) {
   *head = new_node;
 }
 
+/*
+ * Add element to the end of the linked list
+ */
 void list_push_back(Node *head, int value) {
   if (head == NULL)
     return;
@@ -61,6 +64,9 @@ void list_push_back(Node *head, int value) {
   current->next = new_node;
 }
 
+/*
+ * Remove the first element of the linked list
+ */
 void list_pop_front(Node **head) {
   if (*head == NULL)
     return;
@@ -69,6 +75,10 @@ void list_pop_front(Node **head) {
   free(tmp);
 }
 
+/*
+ * cycle through the linked list
+ * and increment the count till head->next == NULL
+ */
 size_t list_size(Node *head) {
   size_t count = 0;
   while (head) {
@@ -76,4 +86,32 @@ size_t list_size(Node *head) {
     head = head->next;
   }
   return count;
+}
+
+/*
+ * delete a node from a linked list
+ */
+void list_delete(Node **head, int value) {
+  if (*head == NULL)
+    return;
+
+  // case 1: when the head is the element
+  // we want to delete
+  while (*head != NULL && (*head)->value == value) {
+    Node *tmp = *head;
+    (*head)->next = tmp->next;
+    free(tmp);
+  }
+
+  // case 2: delete element we want to delete is after the head
+  Node *current = *head;
+  while (current != NULL && current->next != NULL) {
+    if (current->next->value == value) {
+      Node *tmp = current;
+      current->next = tmp->next;
+      free(tmp);
+    } else {
+      current = current->next;
+    }
+  }
 }

@@ -22,5 +22,13 @@ int main() {
   size_t ll_size = list_size(current);
   printf("%zu\n", ll_size);
 
+  list_delete(&current, 4);
+
+  print_ll(current);
+
+  // list_delete(&current, 4);
+  //
+  // print_ll(current);
+
   return 1;
 }
