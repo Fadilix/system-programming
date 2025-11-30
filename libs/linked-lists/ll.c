@@ -47,7 +47,7 @@ void list_push_front(Node **head, int value) {
 
 void list_push_back(Node *head, int value) {
   if (head == NULL)
-    return; // cannot create first node
+    return;
 
   Node *new_node = malloc(sizeof(Node));
   new_node->value = value;
@@ -59,4 +59,21 @@ void list_push_back(Node *head, int value) {
   }
 
   current->next = new_node;
+}
+
+void list_pop_front(Node **head) {
+  if (*head == NULL)
+    return;
+  Node *tmp = *head;
+  *head = (*head)->next;
+  free(tmp);
+}
+
+size_t list_size(Node *head) {
+  size_t count = 0;
+  while (head) {
+    count++;
+    head = head->next;
+  }
+  return count;
 }
