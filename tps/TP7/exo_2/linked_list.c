@@ -43,18 +43,31 @@ List delete_elements(List lst, int v) {
 
   List ptr_lst = lst;
 
-  while (lst != NULL && (lst->value != v)) {
+  while (lst->next != NULL) {
     if (lst->next->value == v) {
-      List tmp_lst = lst;
+      List tmp_lst = lst->next;
       lst->next = tmp_lst->next;
+      // printf("infinite loop");
       free(tmp_lst);
+      // return ptr_lst;
+    } else {
+      lst = lst->next;
     }
   }
   return ptr_lst;
 }
 
+int find_element(List lst, int v) {
+  assert(lst != NULL);
+  for (; lst != NULL; lst = lst->next)
+    if (lst->value == v)
+      return 1;
+  return 0;
+}
+
 List delete_element(List lst, int v) {
   assert(lst != NULL);
+
   if (lst != NULL && (lst->value == v)) {
     List tmp_lst = lst;
     lst = lst->next;
@@ -66,11 +79,13 @@ List delete_element(List lst, int v) {
 
   while (lst != NULL && (lst->value != v)) {
     if (lst->next->value == v) {
-      List tmp_lst = lst;
+      List tmp_lst = lst->next;
       lst->next = tmp_lst->next;
       free(tmp_lst);
       return ptr_lst;
     }
+    printf("%d\n", lst->value);
+    lst = lst->next;
   }
 
   return ptr_lst;

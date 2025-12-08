@@ -11,5 +11,6 @@ List append_element(List lst, int v);
 List delete_element(List lst, int v);
 List delete_elements(List lst, int v);
 void print_list(List lst);
+int find_element(List lst, int v);
 
 #endif
