@@ -9,7 +9,7 @@ unsigned long hash(const char *key, int size) {
   while ((c = *key++)) {
     hash = ((hash << 5) + hash) + c;
   }
-  return hash % 5;
+  return hash % size;
 }
 
 HashMap *create_hashmap(int size) {
