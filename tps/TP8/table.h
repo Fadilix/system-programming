@@ -15,7 +15,7 @@ struct node {
 
 typedef struct node *Table;
 
-typedef void (*t_fonction)(char *elt);
+typedef void (*t_fonction)(char *elt, int n);
 
 /* Creation d'une table vide */
 Table creer_table(void);

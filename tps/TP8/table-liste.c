@@ -58,13 +58,41 @@ void imprimer_table(Table table) {
     }
     current = current->next;
   }
+  printf("\n");
 }
 //
 // /* Appel d'une fonction sur chacun des éléments de la table */
-// void appliquer_table(Table table, t_fonction fonction) {}
+void appliquer_table(Table table, t_fonction fonction) {
+  if (!table)
+    return;
+
+  struct node *current = table;
+
+  while (current->next != NULL) {
+    fonction(current->elt, current->count);
+    current = current->next;
+  }
+}
 //
 // /* Recherche du nombre d'occurrences d'un élément */
-// int rechercher_table(Table table, char *elt) {}
-//
+int rechercher_table(Table table, char *elt) {
+  if (!table)
+    return 0;
+
+  struct node *current = table;
+
+  while (current != NULL) {
+    if (strcmp(current->elt, elt) == 0) {
+      return current->count;
+    }
+  }
+
+  return 0;
+}
+
 // /* Destruction d'une table */
-// void detruire_table(Table *table) {}
+void detruire_table(Table *table) {
+  free((*table)->elt);
+  free((*table)->next);
+  free(*table);
+}

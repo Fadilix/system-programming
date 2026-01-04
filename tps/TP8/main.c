@@ -78,14 +78,14 @@ int main(void) {
 
   /* Affichage de la table triee avant les idents ayant un nombre pair de
    * lettres */
-  // printf("----------\n");
-  // appliquer_table(table, affiche_pair);
-  //
+  printf("----------\n");
+  appliquer_table(table, affiche_pair);
+
   // /* Affichage dee mots qui apparaissent plus de 3 fois */
-  // printf("----------\n");
-  // appliquer_table(table, affiche_plus_que_trois);
+  printf("----------\n");
+  appliquer_table(table, affiche_plus_que_trois);
   //
   // /* Destruction de la table */
-  // detruire_table(&table);
+  detruire_table(&table);
   return 0;
 }
