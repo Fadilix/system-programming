@@ -5,7 +5,7 @@
 
 typedef unsigned char BigSet[MAX_BIGSET];
 
-void BigSet_init(BigSet s) {
+void bigSet_init(BigSet s) {
   for (int i = 0; i < MAX_BIGSET; i++) {
     s[i] = 0;
   }
@@ -19,4 +19,32 @@ void bigSet_add(BigSet s, int i) {
   }
 }
 
-int main() { return 0; }
+int bigSet_is_in(BigSet s, int i) {
+  if (i >= 0 && i <= MAX_VAL) {
+    int byte = i / CHAR_SIZE;
+    int bit = i % CHAR_SIZE;
+    int start = s[byte];
+    int intermidiate = start | s[byte];
+    return start == intermidiate ? 1 : 0;
+  }
+  return 0;
+}
+
+int main() {
+  BigSet e1, e2, e3;
+  bigSet_init(e1);
+  bigSet_init(e2);
+  bigSet_init(e3);
+
+  bigSet_add(e2, 10);
+  int is_in = bigSet_is_in(e2, 10);
+
+  if (is_in) {
+    printf("The value %d is in the list", 10);
+  } else {
+    printf("The value %d is in not the list", 10);
+  }
+
+  return 0;
+  ;
+}
