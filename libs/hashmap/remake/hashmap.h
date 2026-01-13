@@ -5,7 +5,7 @@
 
 typedef struct Entry {
   char *key;
-  char value;
+  char *value;
   struct Entry *next;
 } Entry;
 
@@ -15,7 +15,9 @@ typedef struct HashMap {
 } HashMap;
 
 unsigned long hash(const char *key, int size);
-HashMap *create_hashmap();
-void *insert(HashMap *map, const char *key, const char *value);
+HashMap *create_hashmap(int size);
+void insert(HashMap *map, const char *key, const char *value);
+char *get(HashMap *map, const char *key);
+void destroy_hashmap(HashMap *map);
 
 #endif
