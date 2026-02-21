@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int buffer = 0;
+int message_buffer = 0;
 
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
@@ -10,11 +10,11 @@ pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 void *producer(void *arg) {
   for (int i = 0; i < 5; i++) {
     pthread_mutex_lock(&lock);
-    while (buffer != 0) {
+    while (message_buffer != 0) {
       pthread_cond_wait(&cond, &lock);
     }
-    buffer = i + 1;
-    printf("Produced: %d\n", buffer);
+    message_buffer = i + 1;
+    printf("Produced: %d\n", message_buffer);
     pthread_cond_signal(&cond);
     pthread_mutex_unlock(&lock);
   }
@@ -25,11 +25,11 @@ void *consumer(void *arg) {
   for (int i = 0; i < 5; i++) {
 
     pthread_mutex_lock(&lock);
-    while (buffer == 0) {
+    while (message_buffer == 0) {
       pthread_cond_wait(&cond, &lock);
     }
-    printf("Consumed %d\n", buffer);
-    buffer = 0;
+    printf("Consumed %d\n", message_buffer);
+    message_buffer = 0;
     pthread_cond_signal(&cond);
     pthread_mutex_unlock(&lock);
   }
